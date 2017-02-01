@@ -1,0 +1,36 @@
+{
+	"name" : "iubar/presenze-test",
+    "description": "",
+    "keywords": ["package", "dependency", "autoload"],
+    "homepage": "https://presenze.iubar.it",
+    "type": "test",
+    "license": "MPL",
+    "authors": [
+        {
+            "name": "Matteo Mirisola",
+            "email": "mirimmm94@gmail.com"
+        },
+        {
+            "name": "Andrea Borgogelli Avveduti",
+            "homepage": "http://www.iubar.it"
+        }
+    ],
+           
+	"repositories": [
+	        {
+	            "type": "git",
+	            "url": "https://github.com/iubar/iubar-web-test.git"
+	        }     
+	    ],
+ 
+    "require-dev": {
+        "php": ">=5.5.0",
+        "iubar/iubar-web-test": "dev-master@dev"
+    },
+     
+    "autoload": {
+    	"psr-4": {
+    		"Presenze\\": "tests/Presenze/"
+        }
+     }     
+}
