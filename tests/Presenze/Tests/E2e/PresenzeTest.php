@@ -1,28 +1,27 @@
 <?php
 
-namespace Fatturatutto\E2e;
+namespace Presenze\E2e;
 
 use Facebook\WebDriver\WebDriverBy;
 use Iubar\Tests\Web_TestCase;
 
 /**
- * Test of www.fatturatutto.it website
+ * Test of presenze.iubar.it website
  *
  * @author Matteo
  * @global env BROWSER
  * @global env SELENIUM_SERVER
+ * @global env SELENIUM_PORT
  * @global env SELENIUM_PATH
  * @global env SCREENSHOTS_PATH
  * @global env APP_HOST
  * @global env APP_USERNAME
  * @global env APP_PASSWORD
  */
-class FatturatuttoTest extends Web_TestCase {
-
-    const EXAMPLE_FATTURA_URL = '/public/resources/xml/1.1/examples/IT01234567890_11002.xml';
+class PresenzeTest extends Web_TestCase {
 
     // Page titles
-    const TITLE_SITE = "FatturaTutto.it";
+    const TITLE_SITE = "Presenze Iubar";
     const TITLE_SITUAZIONE = "Situazione";
     const TITLE_IMPORTAZIONE = "Importazione";
     const TITLE_ELENCO = "Elenco";
@@ -38,7 +37,7 @@ class FatturatuttoTest extends Web_TestCase {
     const ROUTE_MODELLI_FATTURA = "modelli-fattura";
     
     // Messages
-    const MSG_WELCOME_DIALOG = "Benvenuto su FatturaTutto";
+    const MSG_WELCOME_DIALOG = "Benvenuto su Presenze";
     const MSG_LOGIN_ERROR = "Email o password errati";
     
     // Menu

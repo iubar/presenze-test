@@ -29,9 +29,6 @@
 <!-- 		<testsuite name="Presenze Api"> -->
 <!-- 		<file>./tests/Presenze/Tests/Api/PresenzeApiTest.php</file> -->
 <!-- 		</testsuite> -->
-		<testsuite name="Presenze Security">
- 			<file>./tests/Presenze/Tests/Security/SecurityTest.php</file>
-		</testsuite>
 		<testsuite name="Presenze App">
 			<file>./tests/Presenze/Tests/E2e/PresenzeTest.php</file>
 		</testsuite>		
