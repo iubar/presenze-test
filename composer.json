@@ -24,7 +24,6 @@
 	    ],
  
     "require-dev": {
-        "php": ">=5.5.0",
         "iubar/iubar-web-test": "dev-master@dev"
     },
      

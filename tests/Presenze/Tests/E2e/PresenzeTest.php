@@ -21,66 +21,68 @@ use Iubar\Tests\Web_TestCase;
 class PresenzeTest extends Web_TestCase {
 
     // Page titles
-    const TITLE_SITE = "Presenze Iubar";
-    const TITLE_SITUAZIONE = "Situazione";
-    const TITLE_IMPORTAZIONE = "Importazione";
-    const TITLE_ELENCO = "Elenco";
-    const TITLE_MODELLI = "Modelli";
-    const TITLE_LOGIN = "Login";
+    const TITLE_SITE = "Iubar Presenze";
+    const TITLE_DASHBOARD = "Dashboard - IubarPresenze";
+//     const TITLE_IMPORTAZIONE = "Importazione";
+//     const TITLE_ELENCO = "Elenco";
+//     const TITLE_MODELLI = "Modelli";
+     const TITLE_LOGIN = "Login - IubarPresenze";
     
     // Routes
-    const ROUTE_LOGIN = "login";
-    const ROUTE_LOGOUT = "logout";
-    const ROUTE_SITUAZIONE = "situazione";
-    const ROUTE_STRUMENTI_IMPORTAZIONE = "strumenti/importazione";
-    const ROUTE_ELENCO_FATTURE = "elenco-fatture";
-    const ROUTE_MODELLI_FATTURA = "modelli-fattura";
+       const ROUTE_LOGIN = "login";
+       const ROUTE_LOGOUT = "logout";
+       const ROUTE_DASHBOARD = "dashboard";
+//     const ROUTE_STRUMENTI_IMPORTAZIONE = "strumenti/importazione";
+//     const ROUTE_ELENCO_FATTURE = "elenco-fatture";
+//     const ROUTE_MODELLI_FATTURA = "modelli-fattura";
     
     // Messages
-    const MSG_WELCOME_DIALOG = "Benvenuto su Presenze";
-    const MSG_LOGIN_ERROR = "Email o password errati";
+//     const MSG_WELCOME_DIALOG = "Benvenuto su Presenze";
+       const MSG_LOGIN_ERROR = "Email o password errati";
     
     // Menu
-    private static $nav_menu = array(
-        'Situazione' => 'menu-situazione',
-        'Anagrafica' => 'menu-anagrafica',
-        'Articoli - servizi' => 'menu-articoli-servizi',
-        'Fatture' => 'menu-fatture',
-        'Fatture proforma' => 'menu-fatture-proforma',
-        'Modelli' => 'menu-modelli',
-        'Strumenti' => 'menu-strumenti',
-        'Impostazioni' => 'menu-impostazioni'
-    );
+//     private static $nav_menu = array(
+//         'Situazione' => 'menu-situazione',
+//         'Anagrafica' => 'menu-anagrafica',
+//         'Articoli - servizi' => 'menu-articoli-servizi',
+//         'Fatture' => 'menu-fatture',
+//         'Fatture proforma' => 'menu-fatture-proforma',
+//         'Modelli' => 'menu-modelli',
+//         'Strumenti' => 'menu-strumenti',
+//         'Impostazioni' => 'menu-impostazioni'
+//     );
     
     private static $max_errors_on_console = 4; // FIXME: perchè con CHROME ci sono errori che variano casualmente ?
 
     /**
      * SiteHome and AppHome test
      */
+    /*
     public function testSiteHome() {
         self::$climate->lightGreen('Inizio testSiteHome()');
         $wd = $this->getWd();
         
         $wd->get($this->getSiteHome() . '/'); // Navigate to SITE_HOME
         $tag = "h1";
-        $substr = "fattura elettronica";
+        $substr = "Iubar Presenze";
         $this->waitForTagWithText($tag, $substr);
         
         // SITE HOME
         $this->check_webpage($this->getSiteHome() . '/', self::TITLE_SITE);
         
         // select button 'Inizia'
-        $inizia_button_path = '//*[@id="slider"]/div/div[1]/div/a/p';
+        $inizia_button_path = '//*[@id="download-button"]';
         $this->waitForXpath($inizia_button_path); // Wait until the element is visible
         $start_button = $wd->findElement(WebDriverBy::xpath($inizia_button_path)); // Button "Inizia"
 
         $start_button->click();
         self::$climate->lightGreen('Fine testSiteHome()');
-    }
+    }*/
 
     /**
      * Login test with wrong and real params
      */
+
     public function testLogin() {
         self::$climate->lightGreen('Inizio testLogin()');
         $wd = $this->getWd();
@@ -122,20 +124,14 @@ class PresenzeTest extends Web_TestCase {
         $this->check_webpage($this->getAppHome() . '/' . self::ROUTE_LOGIN, self::TITLE_LOGIN);
         
         $this->do_login();
-        
-        // Verify to be enter and that welcome msg is show
-        $welcome_msg = '//*[@id="ngdialog1"]/div[2]/div/div[1]'; // dialog compile your data
                                                                  
-        // if you have never compile your data this function do it for you
-        if (!isset($welcome_msg)) {
-            $this->compile_dialog();
-        }
         self::$climate->lightGreen('Fine testLogin()');
     }
-
+    
     /**
      * Test the aside navigation bar
      */
+    /*
     public function testAsideNavigationBar() {
         self::$climate->lightGreen('Inizio testAsideNavigationBar()');
         $wd = $this->getWd();
@@ -147,11 +143,12 @@ class PresenzeTest extends Web_TestCase {
             $this->check_nav_bar($value, $key);
         }
         self::$climate->lightGreen('Fine testAsideNavigationBar()');
-    }
+    }*/
 
     /**
      * Test 'impostazioni' section in the aside navigation bar
      */
+    /*
     public function testImpostazioni() {
         self::$climate->lightGreen('Inizio testImpostazioni()');
         $wd = $this->getWd();
@@ -184,11 +181,12 @@ class PresenzeTest extends Web_TestCase {
         }
         
         self::$climate->lightGreen('Fine testImpostazioni()');
-    }
+    }*/
 
     /**
      * Try to import an invoice in ROUTE_STRUMENTI_IMPORTAZIONE
      */
+    /*
     public function testImportazioneFattura() {
         
         if (self::$browser != self::MARIONETTE && self::$browser != self::SAFARI) { // FIXME: la soluzione seguente è incompatibile con MARIONETTE e SAFARI
@@ -262,11 +260,12 @@ class PresenzeTest extends Web_TestCase {
             
             self::$climate->lightGreen('Fine testImportazioneFattura()');
         }
-    }
+    }*/
 
     /**
      * Test the read of the console in ROUTE_MODELLI_FATTURA
      */
+    /*
     public function testConsole() {
         self::$climate->lightGreen('Inizio testConsole()');
         if (self::$browser != self::MARIONETTE) { // NOTE: can't read the console with MARIONETTE: https://github.com/mozilla/geckodriver/issues/144
@@ -291,32 +290,32 @@ class PresenzeTest extends Web_TestCase {
             $this->assertLessThan(self::$max_errors_on_console, $console_error);
         }
         self::$climate->lightGreen('Fine testConsole()');
-    }
+    }*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
      * Call the login() function with the global params username and password
      */
-    private function do_login($right_account = true) {
+    private function do_login() {
         self::$climate->white("Begin of do_login()");
         $user = self::$app_username;
         $password = self::$app_password;
         $this->login($user, $password);
-        // Sono su pagina situazione
-        if ($right_account) {
-                        
-            $impostazioni_id = 'menu-impostazioni';
-            self::$climate->white("I'm waiting for the id: " . $impostazioni_id);
-            $this->waitForId($impostazioni_id);
-            // oppure...
-            // $tag = 'h2';
-            // self::$climate->white("I'm waiting for the tag: " . $tag);
-            // $this->waitForTagWithText($tag, "Situazione");
-           
-            // checking that we are in the right page
-            $this->check_webpage($this->getAppHome() . '/' . self::ROUTE_SITUAZIONE, self::TITLE_SITUAZIONE);
-        }
+        
+        /*        
+        // Sono su pagina dashboard                       
+        $impostazioni_id = 'menu-impostazioni';
+        self::$climate->white("I'm waiting for the id: " . $impostazioni_id);
+        $this->waitForId($impostazioni_id);
+        // oppure...
+        // $tag = 'h2';
+        // self::$climate->white("I'm waiting for the tag: " . $tag);
+        // $this->waitForTagWithText($tag, "Situazione");
+         */
+        
+        // checking that we are in the right page
+        $this->check_webpage($this->getAppHome() . '/' . self::ROUTE_DASHBOARD, self::TITLE_DASHBOARD);    
         
         self::$climate->white("End of do_login()");
     }
@@ -342,6 +341,7 @@ class PresenzeTest extends Web_TestCase {
         // if I'm not already log-in do the login
         if ($current_url == $login_url) {
             // select email method to enter
+            
             $email_button_path = '/html/body/div[1]/div[1]/div/div/div[2]/div[2]/button';
             $this->waitForXpath($email_button_path); // Wait until the element is visible
             $email_enter = $wd->findElement(WebDriverBy::xpath($email_button_path)); // Button "Email"
@@ -408,6 +408,7 @@ class PresenzeTest extends Web_TestCase {
     /**
      * Compile the dialog 'configurazione iniziale' with random data
      */
+    /*
     private function compile_dialog() {
         $wd = $this->getWd();
         $avanti_button_path = '//*[@id="ngdialog1"]/div[2]/div/div[1]/div/button';
@@ -451,7 +452,7 @@ class PresenzeTest extends Web_TestCase {
         $this->waitForXpath($fine_button_path); // fine
         $fine_button = $wd->findElement(WebDriverBy::xpath($fine_button_path)); // Button "fine"
         $fine_button->click();
-    }
+    }*/
 
     /**
      * Write into the respective field
@@ -487,14 +488,14 @@ class PresenzeTest extends Web_TestCase {
      * Return SiteHome (use http protocol)
      */
     private function getSiteHome() {
-        return "http://www." . self::$app_host;
+        return "http://www.iubar.it/presenze";
     }
 
     /**
      * Return AppHome (use https protocol)
      */
     private function getAppHome() {
-        return "https://app." . self::$app_host;
+        return "http://" . self::$app_host;
     }
 
     /**
