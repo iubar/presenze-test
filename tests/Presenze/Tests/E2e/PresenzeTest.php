@@ -124,7 +124,10 @@ class PresenzeTest extends Web_TestCase {
         $this->check_webpage($this->getAppHome() . '/' . self::ROUTE_LOGIN, self::TITLE_LOGIN);
         
         $this->do_login();
-                                                                 
+                                 
+        // checking that we are in the right page
+        $this->check_webpage($this->getAppHome() . '/' . self::ROUTE_DASHBOARD, self::TITLE_DASHBOARD);
+        
         self::$climate->lightGreen('Fine testLogin()');
     }
     
@@ -302,20 +305,15 @@ class PresenzeTest extends Web_TestCase {
         $user = self::$app_username;
         $password = self::$app_password;
         $this->login($user, $password);
-        
-        /*        
-        // Sono su pagina dashboard                       
-        $impostazioni_id = 'menu-impostazioni';
-        self::$climate->white("I'm waiting for the id: " . $impostazioni_id);
-        $this->waitForId($impostazioni_id);
+                       
+        // Attendo che il login sia completato
+        $dashboard_id = 'menu-dashboard';
+        self::$climate->white("I'm waiting for the id: " . $dashboard_id);
+        $this->waitForId($dashboard_id);
         // oppure...
         // $tag = 'h2';
         // self::$climate->white("I'm waiting for the tag: " . $tag);
         // $this->waitForTagWithText($tag, "Situazione");
-         */
-        
-        // checking that we are in the right page
-        $this->check_webpage($this->getAppHome() . '/' . self::ROUTE_DASHBOARD, self::TITLE_DASHBOARD);    
         
         self::$climate->white("End of do_login()");
     }
@@ -455,21 +453,6 @@ class PresenzeTest extends Web_TestCase {
     }*/
 
     /**
-     * Write into the respective field
-     *
-     * @param string $id the id of the elem
-     * @param string $sendKey what do you wanna write in the elem
-     */
-    private function fillField($id, $sendKey) {
-        $wd = $this->getWd();
-        $this->waitForId($id); // Wait until the element is visible
-        $elem = $wd->findElement(WebDriverBy::id($id));
-        $elem->sendKeys($sendKey);
-        $this->assertNotNull($elem);
-        $this->assertContains($expected_title, $elem->getText());
-    }
-
-    /**
      * Unsed, explain only how to use cookies
      */
     private function playWithCookies() {
@@ -498,19 +481,4 @@ class PresenzeTest extends Web_TestCase {
         return "http://" . self::$app_host;
     }
 
-    /**
-     * Take a temporary directory
-     *
-     * @return string the temporary directory
-     */
-    private function getTmpDir() {
-        $tmp_dir = sys_get_temp_dir();
-        if ($this->isTravis()) {
-            $tmp_dir = __DIR__;
-        }
-        if (!is_writable($tmp_dir)) {
-            $this->fail("Temp dir not writable: " . $tmp_dir);
-        }
-        return $tmp_dir;
-    }
 }
