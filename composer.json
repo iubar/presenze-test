@@ -23,7 +23,7 @@
 	        }     
 	    ],
  
-    "require-dev": {
+    "require": {
         "iubar/iubar-web-test": "dev-master@dev"
     },
      
