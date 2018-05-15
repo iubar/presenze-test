@@ -100,10 +100,7 @@ class PresenzeTest extends Web_TestCase {
         
         $url = $this->getAppHome() . '/' . self::ROUTE_LOGIN;
         $wd->get($url); // Navigate to ROUTE_LOGIN
-                        
-        // Poichè ho preventivamente cancellato tutti i cookies sono sicuro che l'url precedente mi indirizzerà direttamente alla form di login senza alcun redirect
-        $this->waitForClassName("login-box");
-        
+                
         $current_url = $wd->getCurrentURL();
         $this->assertEquals($url, $current_url);
         
