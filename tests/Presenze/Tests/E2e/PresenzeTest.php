@@ -1,6 +1,6 @@
 <?php
 
-namespace Presenze\E2e;
+namespace Presenze\Tests\E2e;
 
 use Facebook\WebDriver\WebDriverBy;
 use Iubar\Tests\Web_TestCase;

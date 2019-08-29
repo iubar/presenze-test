@@ -1,6 +1,6 @@
 <?php
 
-namespace Presenze\Api;
+namespace Presenze\Tests\Api;
 
 use Iubar\Tests\SafeRestApi_TestCase;
 use Iubar\Tests\RestApi_TestCase;
