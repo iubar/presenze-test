@@ -88,7 +88,7 @@ class PresenzeTest extends Web_TestCase {
         self::$climate->lightGreen('Inizio testLogin()');
         $wd = $this->getWd();
                 
-        if (true || self::$browser != self::SAFARI) {
+        if (true) {
             // $this->deleteAllCookies(); non funziona con SAFARI
             $wd->manage()->deleteAllCookies();
         } else {
@@ -96,12 +96,15 @@ class PresenzeTest extends Web_TestCase {
             echo 'Navigating to ' . $url. ' ...' . PHP_EOL;
             $wd->get($url); // Navigate to ROUTE_LOGOUT
             echo 'implicitlyWait()' . ' ...' . PHP_EOL;
+            if(self::$browser != self::SAFARI){  
             $wd->manage()
                 ->timeouts()
-                ->implicitlyWait(3); // FIXME: Non compatibile con Safari, sostituire con:
-// $wd->wait(10, 1000)->until(
-//  WebDriverExpectedCondition::visibilityOf($wd->findElement(WebDriverBy::id('CHANGEME')))
-// );            
+                ->implicitlyWait(3); // Non compatibile con Safari
+            }else{ // segue soluzione compatibile con tutti i browser           
+                $wd->wait(10, 1000)->until(
+                WebDriverExpectedCondition::visibilityOf($wd->findElement(WebDriverBy::id('social_img')))
+                );    
+            }
         }        
         $url = $this->getAppHome() . '/' . self::ROUTE_LOGIN;
         echo 'Navigating to ' . $url . ' ...' . PHP_EOL;
@@ -333,9 +336,15 @@ class PresenzeTest extends Web_TestCase {
         $wd->get($login_url); // Navigate to ROUTE_LOGIN
                               
         // Implicit waits: I don't know which page it is. If user is already logged-in, the browser is automatically redirected
+        if(self::$browser != self::SAFARI){
         $wd->manage()
             ->timeouts()
             ->implicitlyWait(4);
+        }else{ // segue soluzione compatibile con tutti i browser  
+             $wd->wait(10, 1000)->until(
+             WebDriverExpectedCondition::visibilityOf($wd->findElement(WebDriverBy::id('social_img')))
+            ); 
+        }
         
         $current_url = $wd->getCurrentURL();
         
