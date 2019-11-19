@@ -3,6 +3,7 @@
 namespace Presenze\Tests\E2e;
 
 use Facebook\WebDriver\WebDriverBy;
+use Facebook\WebDriver\WebDriverExpectedCondition;
 use Iubar\Tests\Web_TestCase;
 
 /**
@@ -87,7 +88,7 @@ class PresenzeTest extends Web_TestCase {
         self::$climate->lightGreen('Inizio testLogin()');
         $wd = $this->getWd();
                 
-        if (self::$browser != self::SAFARI) {
+        if (true || self::$browser != self::SAFARI) {
             // $this->deleteAllCookies(); non funziona con SAFARI
             $wd->manage()->deleteAllCookies();
         } else {
@@ -97,7 +98,10 @@ class PresenzeTest extends Web_TestCase {
             echo 'implicitlyWait()' . ' ...' . PHP_EOL;
             $wd->manage()
                 ->timeouts()
-                ->implicitlyWait(3);
+                ->implicitlyWait(3); // FIXME: Non compatibile con Safari, sostituire con:
+// $wd->wait(10, 1000)->until(
+//  WebDriverExpectedCondition::visibilityOf($wd->findElement(WebDriverBy::id('CHANGEME')))
+// );            
         }        
         $url = $this->getAppHome() . '/' . self::ROUTE_LOGIN;
         echo 'Navigating to ' . $url . ' ...' . PHP_EOL;
