@@ -346,7 +346,7 @@ class PresenzeTest extends Web_TestCase {
         }else{ // segue soluzione compatibile con tutti i browser  
              $wd->wait(10, 1000)->until(
              // WebDriverExpectedCondition::visibilityOf($wd->findElement(WebDriverBy::id('social_img')))
-             WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::id('social_img'))
+             WebDriverExpectedCondition::visibilityOfElementLocated(WebDriverBy::id('customGoogleBtn'))
             ); 
         }
         
