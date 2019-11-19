@@ -94,7 +94,7 @@ class PresenzeTest extends Web_TestCase {
             $url = $this->getAppHome() . '/' . self::ROUTE_LOGOUT;
             echo 'Navigating to ' . $url. ' ...' . PHP_EOL;
             $wd->get($url); // Navigate to ROUTE_LOGOUT
-            echo 'implicitlyWait() . ' ...' . PHP_EOL;
+            echo 'implicitlyWait()' . ' ...' . PHP_EOL;
             $wd->manage()
                 ->timeouts()
                 ->implicitlyWait(3);
