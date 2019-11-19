@@ -92,13 +92,15 @@ class PresenzeTest extends Web_TestCase {
             $wd->manage()->deleteAllCookies();
         } else {
             $url = $this->getAppHome() . '/' . self::ROUTE_LOGOUT;
+            echo 'Navigating to ' . $url. ' ...' . PHP_EOL;
             $wd->get($url); // Navigate to ROUTE_LOGOUT
+            echo 'implicitlyWait() . ' ...' . PHP_EOL;
             $wd->manage()
                 ->timeouts()
                 ->implicitlyWait(3);
-        }
-        
+        }        
         $url = $this->getAppHome() . '/' . self::ROUTE_LOGIN;
+        echo 'Navigating to ' . $url . ' ...' . PHP_EOL;
         $wd->get($url); // Navigate to ROUTE_LOGIN
                 
         $current_url = $wd->getCurrentURL();
