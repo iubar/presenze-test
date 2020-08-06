@@ -1,4 +1,4 @@
-#PROGETTO DEPRECATO
+# PROGETTO DEPRECATO
 
 https://presenze.iubar.it è stato sostituito da https://hr.iubar.it (valutare se aggiornare i test o spostarli all'interno del relativo progetto su gitlab)
 
